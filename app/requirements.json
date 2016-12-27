@@ -1,0 +1,272 @@
+[
+        {
+            "id": "492-12-c-4",
+            "source": {
+                "id": "491-3-c-1",
+                "name": "Internet",
+                "type": "internet",
+                "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/objects/491-3-c-1"
+            },
+            "destination": {
+                "id": "491-7-c-1",
+                "name": "puppet-ws",
+                "type": "host",
+                "ip": "10.0.42.42",
+                "network": {
+                    "id": "id_Net_10_0_42",
+                    "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/objects/id_Net_10_0_42"
+                },
+                "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/objects/491-7-c-1"
+            },
+            "services": [
+                {
+                    "id": "tcp_80",
+                    "name": "http",
+                    "description": "Hypertext Transfer Protocol",
+                    "type": "tcp_service",
+                    "protocol": 6,
+                    "destinationPorts": "80",
+                    "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/objects/tcp_80"
+                },{
+                    "id": "tcp_90",
+                    "name": "tcp_90",
+                    "type": "tcp_service",
+                    "protocol": 6,
+                    "destinationPorts": "90",
+                    "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/objects/tcp_90"
+                }
+            ],
+            "action": "deny",
+            "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/requirements/492-12-c-4"
+        },
+        {
+            "id": "492-12-c-5",
+            "source": {
+                "id": "491-3-c-1",
+                "name": "Internet",
+                "type": "internet",
+                "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/objects/491-3-c-1"
+            },
+            "destination": {
+                "id": "491-7-c-3",
+                "name": "puppet-ws2",
+                "type": "host",
+                "ip": "10.0.42.23",
+                "network": {
+                    "id": "id_Net_10_0_42",
+                    "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/objects/id_Net_10_0_42"
+                },
+                "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/objects/491-7-c-3"
+            },
+            "services": [
+                {
+                    "id": "tcp_80",
+                    "name": "http",
+                    "description": "Hypertext Transfer Protocol",
+                    "type": "tcp_service",
+                    "protocol": 6,
+                    "destinationPorts": "80",
+                    "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/objects/tcp_80"
+                }
+            ],
+            "action": "deny",
+            "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/requirements/492-12-c-5"
+        },
+        {
+            "id": "492-14-c-6",
+            "source": {
+                "id": "id_Net_10_3_42",
+                "name": "Admins",
+                "type": "network",
+                "ip": "10.3.42.0/24",
+                "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/objects/id_Net_10_3_42"
+            },
+            "destination": {
+                "id": "491-7-c-4",
+                "name": "puppet-dns",
+                "type": "host",
+                "ip": "10.1.42.42",
+                "network": {
+                    "id": "id_Net_10_1_42",
+                    "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/objects/id_Net_10_1_42"
+                },
+                "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/objects/491-7-c-4"
+            },
+            "services": [
+                {
+                    "id": "tcp_22",
+                    "name": "ssh",
+                    "description": "secure shell, encrypted and authenticated rsh",
+                    "type": "tcp_service",
+                    "protocol": 6,
+                    "destinationPorts": "22",
+                    "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/objects/tcp_22"
+                }
+            ],
+            "action": "allow",
+            "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/requirements/492-14-c-6"
+        },
+        {
+            "id": "492-14-c-8",
+            "source": {
+                "id": "id_Net_10_2_42",
+                "name": "Users",
+                "type": "network",
+                "ip": "10.2.42.0/24",
+                "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/objects/id_Net_10_2_42"
+            },
+            "destination": {
+                "id": "491-7-c-1",
+                "name": "puppet-ws",
+                "type": "host",
+                "ip": "10.0.42.42",
+                "network": {
+                    "id": "id_Net_10_0_42",
+                    "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/objects/id_Net_10_0_42"
+                },
+                "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/objects/491-7-c-1"
+            },
+            "services": [
+                {
+                    "id": "tcp_80",
+                    "name": "http",
+                    "description": "Hypertext Transfer Protocol",
+                    "type": "tcp_service",
+                    "protocol": 6,
+                    "destinationPorts": "80",
+                    "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/objects/tcp_80"
+                }
+            ],
+            "action": "deny",
+            "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/requirements/492-14-c-8"
+        },
+        {
+            "id": "492-14-c-9",
+            "source": {
+                "id": "id_Net_10_2_42",
+                "name": "Users",
+                "type": "network",
+                "ip": "10.2.42.0/24",
+                "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/objects/id_Net_10_2_42"
+            },
+            "destination": {
+                "id": "491-7-c-3",
+                "name": "puppet-ws2",
+                "type": "host",
+                "ip": "10.0.42.23",
+                "network": {
+                    "id": "id_Net_10_0_42",
+                    "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/objects/id_Net_10_0_42"
+                },
+                "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/objects/491-7-c-3"
+            },
+            "services": [
+                {
+                    "id": "tcp_80",
+                    "name": "http",
+                    "description": "Hypertext Transfer Protocol",
+                    "type": "tcp_service",
+                    "protocol": 6,
+                    "destinationPorts": "80",
+                    "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/objects/tcp_80"
+                }
+            ],
+            "action": "deny",
+            "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/requirements/492-14-c-9"
+        },
+        {
+            "id": "req-id_Net_10_0_0-allow-id_Net_10_0_19",
+            "source": {
+                "id": "id_Net_10_0_0",
+                "name": "Net_10_0_0",
+                "type": "network",
+                "ip": "10.0.0.0/24",
+                "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/objects/id_Net_10_0_0"
+            },
+            "destination": {
+                "id": "id_Net_10_0_19",
+                "name": "Net_10_0_19",
+                "type": "network",
+                "ip": "10.0.19.0/24",
+                "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/objects/id_Net_10_0_19"
+            },
+            "action": "allow",
+            "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/requirements/req-id_Net_10_0_0-allow-id_Net_10_0_19"
+        },
+        {
+            "id": "req-id_Net_10_0_0-allow-id_Net_10_0_22",
+            "source": {
+                "id": "id_Net_10_0_0",
+                "name": "Net_10_0_0",
+                "type": "network",
+                "ip": "10.0.0.0/24",
+                "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/objects/id_Net_10_0_0"
+            },
+            "destination": {
+                "id": "id_Net_10_0_22",
+                "name": "Net_10_0_22",
+                "type": "network",
+                "ip": "10.0.22.0/24",
+                "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/objects/id_Net_10_0_22"
+            },
+            "action": "allow",
+            "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/requirements/req-id_Net_10_0_0-allow-id_Net_10_0_22"
+        },
+        {
+            "id": "req-id_Net_10_0_0-allow-id_Net_10_0_26",
+            "source": {
+                "id": "id_Net_10_0_0",
+                "name": "Net_10_0_0",
+                "type": "network",
+                "ip": "10.0.0.0/24",
+                "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/objects/id_Net_10_0_0"
+            },
+            "destination": {
+                "id": "id_Net_10_0_26",
+                "name": "Net_10_0_26",
+                "type": "network",
+                "ip": "10.0.26.0/24",
+                "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/objects/id_Net_10_0_26"
+            },
+            "action": "allow",
+            "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/requirements/req-id_Net_10_0_0-allow-id_Net_10_0_26"
+        },
+        {
+            "id": "req-id_Net_10_0_0-allow-id_Net_10_0_46",
+            "source": {
+                "id": "id_Net_10_0_0",
+                "name": "Net_10_0_0",
+                "type": "network",
+                "ip": "10.0.0.0/24",
+                "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/objects/id_Net_10_0_0"
+            },
+            "destination": {
+                "id": "id_Net_10_0_46",
+                "name": "Net_10_0_46",
+                "type": "network",
+                "ip": "10.0.46.0/24",
+                "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/objects/id_Net_10_0_46"
+            },
+            "action": "allow",
+            "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/requirements/req-id_Net_10_0_0-allow-id_Net_10_0_46"
+        },
+        {
+            "id": "req-id_Net_10_0_0-allow-id_Net_10_0_47",
+            "source": {
+                "id": "id_Net_10_0_0",
+                "name": "Net_10_0_0",
+                "type": "network",
+                "ip": "10.0.0.0/24",
+                "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/objects/id_Net_10_0_0"
+            },
+            "destination": {
+                "id": "id_Net_10_0_47",
+                "name": "Net_10_0_47",
+                "type": "network",
+                "ip": "10.0.47.0/24",
+                "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/objects/id_Net_10_0_47"
+            },
+            "action": "allow",
+            "_self": "http://rc.intelliment-labs.com/api/v1/policy-automation/scenarios/492/requirements/req-id_Net_10_0_0-allow-id_Net_10_0_47"
+        }
+    ]

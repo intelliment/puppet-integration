@@ -1,0 +1,596 @@
+[
+  {
+    "tags": [
+      "role",
+      "__node_regexp__puppet-webserver..intelliment-labs.com",
+      "server",
+      "class",
+      "provides",
+      "profile",
+      "base",
+      "itlm",
+      "itlm::provides",
+      "app",
+      "server::ssh",
+      "webserver",
+      "ssh",
+      "role::app::webserver",
+      "profile::server::base",
+      "node"
+    ],
+    "file": "/etc/puppetlabs/code/environments/production/modules/profile/manifests/server/base.pp",
+    "type": "Itlm::Provides",
+    "title": "server::ssh",
+    "line": 15,
+    "resource": "41418e8e4b84b1f5abf4f1a003eb61e6d0cfd49a",
+    "environment": "production",
+    "certname": "puppet-webserver.intelliment-labs.com",
+    "parameters": {
+      "action": "allow",
+      "ports": [
+        "22/udp"
+      ],
+      "source": [
+        "Admins"
+      ]
+    },
+    "exported": false
+  },
+  {
+    "tags": [
+      "role",
+      "server",
+      "class",
+      "provides",
+      "profile",
+      "base",
+      "itlm",
+      "itlm::provides",
+      "role::puppet::master",
+      "learning.puppetlabs.vm",
+      "puppet",
+      "server::ssh",
+      "master",
+      "ssh",
+      "profile::server::base",
+      "node"
+    ],
+    "file": "/etc/puppetlabs/code/environments/production/modules/profile/manifests/server/base.pp",
+    "type": "Itlm::Provides",
+    "title": "server::ssh",
+    "line": 15,
+    "resource": "41418e8e4b84b1f5abf4f1a003eb61e6d0cfd49a",
+    "environment": "production",
+    "certname": "learning.puppetlabs.vm",
+    "parameters": {
+      "action": "allow",
+      "ports": [
+        "22/udp"
+      ],
+      "source": [
+        "Admins"
+      ]
+    },
+    "exported": false
+  },
+  {
+    "tags": [
+      "role",
+      "server",
+      "puppet-database.intelliment-labs.com",
+      "class",
+      "provides",
+      "profile",
+      "base",
+      "itlm",
+      "itlm::provides",
+      "database",
+      "app",
+      "server::ssh",
+      "role::app::database",
+      "ssh",
+      "profile::server::base",
+      "node"
+    ],
+    "file": "/etc/puppetlabs/code/environments/production/modules/profile/manifests/server/base.pp",
+    "type": "Itlm::Provides",
+    "title": "server::ssh",
+    "line": 15,
+    "resource": "41418e8e4b84b1f5abf4f1a003eb61e6d0cfd49a",
+    "environment": "production",
+    "certname": "puppet-database.intelliment-labs.com",
+    "parameters": {
+      "action": "allow",
+      "ports": [
+        "22/udp"
+      ],
+      "source": [
+        "Admins"
+      ]
+    },
+    "exported": false
+  },
+  {
+    "tags": [
+      "role",
+      "server",
+      "class",
+      "provides",
+      "profile",
+      "base",
+      "itlm",
+      "itlm::provides",
+      "role::server::dnsserver",
+      "dnsserver",
+      "server::ssh",
+      "puppet-dns.intelliment-labs.com",
+      "ssh",
+      "profile::server::base",
+      "node"
+    ],
+    "file": "/etc/puppetlabs/code/environments/production/modules/profile/manifests/server/base.pp",
+    "type": "Itlm::Provides",
+    "title": "server::ssh",
+    "line": 15,
+    "resource": "41418e8e4b84b1f5abf4f1a003eb61e6d0cfd49a",
+    "environment": "production",
+    "certname": "puppet-dns.intelliment-labs.com",
+    "parameters": {
+      "action": "allow",
+      "ports": [
+        "22/udp"
+      ],
+      "source": [
+        "Admins"
+      ]
+    },
+    "exported": false
+  },
+  {
+    "tags": [
+      "role",
+      "__node_regexp__puppet-webserver..intelliment-labs.com",
+      "server",
+      "class",
+      "provides",
+      "profile",
+      "base",
+      "itlm",
+      "itlm::provides",
+      "app",
+      "server::ssh",
+      "webserver",
+      "ssh",
+      "role::app::webserver",
+      "profile::server::base",
+      "node"
+    ],
+    "file": "/etc/puppetlabs/code/environments/production/modules/profile/manifests/server/base.pp",
+    "type": "Itlm::Provides",
+    "title": "server::ssh",
+    "line": 15,
+    "resource": "41418e8e4b84b1f5abf4f1a003eb61e6d0cfd49a",
+    "environment": "production",
+    "certname": "puppet-webserver2.intelliment-labs.com",
+    "parameters": {
+      "action": "allow",
+      "ports": [
+        "22/udp"
+      ],
+      "source": [
+        "Admins"
+      ]
+    },
+    "exported": false
+  },
+  {
+    "tags": [
+      "role",
+      "puppet-database.intelliment-labs.com",
+      "class",
+      "provides",
+      "profile",
+      "itlm",
+      "itlm::provides",
+      "database",
+      "app::database",
+      "app",
+      "profile::app::database",
+      "role::app::database",
+      "node"
+    ],
+    "file": "/etc/puppetlabs/code/environments/production/modules/profile/manifests/app/database.pp",
+    "type": "Itlm::Provides",
+    "title": "app::database",
+    "line": 23,
+    "resource": "0c180364fb726c590fe02dc494ac716c5af8c9e2",
+    "environment": "production",
+    "certname": "puppet-database.intelliment-labs.com",
+    "parameters": {
+      "action": "allow",
+      "ports": [
+        "3306/tcp"
+      ],
+      "source": [
+        "all-consumers"
+      ]
+    },
+    "exported": false
+  },
+  {
+    "tags": [
+      "role",
+      "__node_regexp__puppet-webserver..intelliment-labs.com",
+      "consumes",
+      "server",
+      "class",
+      "resolv",
+      "profile",
+      "base",
+      "itlm",
+      "dns",
+      "dns::resolv",
+      "app",
+      "webserver",
+      "itlm::consumes",
+      "role::app::webserver",
+      "profile::server::base",
+      "node"
+    ],
+    "file": "/etc/puppetlabs/code/environments/production/modules/profile/manifests/server/base.pp",
+    "type": "Itlm::Consumes",
+    "title": "dns::resolv",
+    "line": 11,
+    "resource": "8ed8a6573189c89b98de1e6ce2011f8313fc7d45",
+    "environment": "production",
+    "certname": "puppet-webserver.intelliment-labs.com",
+    "parameters": {
+      "action": "allow",
+      "destination": [
+        "profile::server::dnsserver"
+      ],
+      "environment": "all",
+      "service": [
+        "dns::resolv"
+      ]
+    },
+    "exported": false
+  },
+  {
+    "tags": [
+      "role",
+      "consumes",
+      "server",
+      "class",
+      "resolv",
+      "profile",
+      "base",
+      "itlm",
+      "dns",
+      "role::puppet::master",
+      "dns::resolv",
+      "learning.puppetlabs.vm",
+      "puppet",
+      "itlm::consumes",
+      "master",
+      "profile::server::base",
+      "node"
+    ],
+    "file": "/etc/puppetlabs/code/environments/production/modules/profile/manifests/server/base.pp",
+    "type": "Itlm::Consumes",
+    "title": "dns::resolv",
+    "line": 11,
+    "resource": "8ed8a6573189c89b98de1e6ce2011f8313fc7d45",
+    "environment": "production",
+    "certname": "learning.puppetlabs.vm",
+    "parameters": {
+      "action": "allow",
+      "destination": [
+        "profile::server::dnsserver"
+      ],
+      "environment": "all",
+      "service": [
+        "dns::resolv"
+      ]
+    },
+    "exported": false
+  },
+  {
+    "tags": [
+      "role",
+      "consumes",
+      "server",
+      "puppet-database.intelliment-labs.com",
+      "class",
+      "resolv",
+      "profile",
+      "base",
+      "itlm",
+      "dns",
+      "database",
+      "dns::resolv",
+      "app",
+      "role::app::database",
+      "itlm::consumes",
+      "profile::server::base",
+      "node"
+    ],
+    "file": "/etc/puppetlabs/code/environments/production/modules/profile/manifests/server/base.pp",
+    "type": "Itlm::Consumes",
+    "title": "dns::resolv",
+    "line": 11,
+    "resource": "8ed8a6573189c89b98de1e6ce2011f8313fc7d45",
+    "environment": "production",
+    "certname": "puppet-database.intelliment-labs.com",
+    "parameters": {
+      "action": "allow",
+      "destination": [
+        "profile::server::dnsserver"
+      ],
+      "environment": "all",
+      "service": [
+        "dns::resolv"
+      ]
+    },
+    "exported": false
+  },
+  {
+    "tags": [
+      "role",
+      "consumes",
+      "server",
+      "class",
+      "resolv",
+      "profile",
+      "base",
+      "itlm",
+      "dns",
+      "role::server::dnsserver",
+      "dnsserver",
+      "dns::resolv",
+      "puppet-dns.intelliment-labs.com",
+      "itlm::consumes",
+      "profile::server::base",
+      "node"
+    ],
+    "file": "/etc/puppetlabs/code/environments/production/modules/profile/manifests/server/base.pp",
+    "type": "Itlm::Consumes",
+    "title": "dns::resolv",
+    "line": 11,
+    "resource": "8ed8a6573189c89b98de1e6ce2011f8313fc7d45",
+    "environment": "production",
+    "certname": "puppet-dns.intelliment-labs.com",
+    "parameters": {
+      "action": "allow",
+      "destination": [
+        "profile::server::dnsserver"
+      ],
+      "environment": "all",
+      "service": [
+        "dns::resolv"
+      ]
+    },
+    "exported": false
+  },
+  {
+    "tags": [
+      "role",
+      "__node_regexp__puppet-webserver..intelliment-labs.com",
+      "consumes",
+      "server",
+      "class",
+      "resolv",
+      "profile",
+      "base",
+      "itlm",
+      "dns",
+      "dns::resolv",
+      "app",
+      "webserver",
+      "itlm::consumes",
+      "role::app::webserver",
+      "profile::server::base",
+      "node"
+    ],
+    "file": "/etc/puppetlabs/code/environments/production/modules/profile/manifests/server/base.pp",
+    "type": "Itlm::Consumes",
+    "title": "dns::resolv",
+    "line": 11,
+    "resource": "8ed8a6573189c89b98de1e6ce2011f8313fc7d45",
+    "environment": "production",
+    "certname": "puppet-webserver2.intelliment-labs.com",
+    "parameters": {
+      "action": "allow",
+      "destination": [
+        "profile::server::dnsserver"
+      ],
+      "environment": "all",
+      "service": [
+        "dns::resolv"
+      ]
+    },
+    "exported": false
+  },
+  {
+    "tags": [
+      "role",
+      "__node_regexp__puppet-webserver..intelliment-labs.com",
+      "consumes",
+      "class",
+      "profile",
+      "itlm",
+      "database",
+      "app::database",
+      "app",
+      "webserver",
+      "profile::app::webserver",
+      "itlm::consumes",
+      "role::app::webserver",
+      "node"
+    ],
+    "file": "/etc/puppetlabs/code/environments/production/modules/profile/manifests/app/webserver.pp",
+    "type": "Itlm::Consumes",
+    "title": "app::database",
+    "line": 7,
+    "resource": "0569646e8a045c4b4f0a3a0ce306638105229a6e",
+    "environment": "production",
+    "certname": "puppet-webserver.intelliment-labs.com",
+    "parameters": {
+      "action": "allow",
+      "destination": [
+        "profile::app::database"
+      ],
+      "environment": "all",
+      "service": [
+        "app::database"
+      ]
+    },
+    "exported": false
+  },
+  {
+    "tags": [
+      "role",
+      "__node_regexp__puppet-webserver..intelliment-labs.com",
+      "consumes",
+      "class",
+      "profile",
+      "itlm",
+      "database",
+      "app::database",
+      "app",
+      "webserver",
+      "profile::app::webserver",
+      "itlm::consumes",
+      "role::app::webserver",
+      "node"
+    ],
+    "file": "/etc/puppetlabs/code/environments/production/modules/profile/manifests/app/webserver.pp",
+    "type": "Itlm::Consumes",
+    "title": "app::database",
+    "line": 7,
+    "resource": "0569646e8a045c4b4f0a3a0ce306638105229a6e",
+    "environment": "production",
+    "certname": "puppet-webserver2.intelliment-labs.com",
+    "parameters": {
+      "action": "allow",
+      "destination": [
+        "profile::app::database"
+      ],
+      "environment": "all",
+      "service": [
+        "app::database"
+      ]
+    },
+    "exported": false
+  },
+  {
+    "tags": [
+      "role",
+      "app::web",
+      "__node_regexp__puppet-webserver..intelliment-labs.com",
+      "web",
+      "class",
+      "provides",
+      "profile",
+      "itlm",
+      "itlm::provides",
+      "app",
+      "webserver",
+      "profile::app::webserver",
+      "role::app::webserver",
+      "node"
+    ],
+    "file": "/etc/puppetlabs/code/environments/production/modules/profile/manifests/app/webserver.pp",
+    "type": "Itlm::Provides",
+    "title": "app::web",
+    "line": 11,
+    "resource": "4d921a1f62476557bc6c7a78995f05790364b05d",
+    "environment": "production",
+    "certname": "puppet-webserver.intelliment-labs.com",
+    "parameters": {
+      "action": "allow",
+      "ports": [
+        "80/tcp",
+        "443/tcp"
+      ],
+      "source": [
+        "Internet",
+        "Users"
+      ]
+    },
+    "exported": false
+  },
+  {
+    "tags": [
+      "role",
+      "app::web",
+      "__node_regexp__puppet-webserver..intelliment-labs.com",
+      "web",
+      "class",
+      "provides",
+      "profile",
+      "itlm",
+      "itlm::provides",
+      "app",
+      "webserver",
+      "profile::app::webserver",
+      "role::app::webserver",
+      "node"
+    ],
+    "file": "/etc/puppetlabs/code/environments/production/modules/profile/manifests/app/webserver.pp",
+    "type": "Itlm::Provides",
+    "title": "app::web",
+    "line": 11,
+    "resource": "4d921a1f62476557bc6c7a78995f05790364b05d",
+    "environment": "production",
+    "certname": "puppet-webserver2.intelliment-labs.com",
+    "parameters": {
+      "action": "allow",
+      "ports": [
+        "80/tcp",
+        "443/tcp"
+      ],
+      "source": [
+        "Internet",
+        "Users"
+      ]
+    },
+    "exported": false
+  },
+  {
+    "tags": [
+      "role",
+      "server",
+      "class",
+      "resolv",
+      "profile::server::dnsserver",
+      "provides",
+      "profile",
+      "itlm",
+      "dns",
+      "itlm::provides",
+      "role::server::dnsserver",
+      "dnsserver",
+      "dns::resolv",
+      "puppet-dns.intelliment-labs.com",
+      "node"
+    ],
+    "file": "/etc/puppetlabs/code/environments/production/modules/profile/manifests/server/dnsserver.pp",
+    "type": "Itlm::Provides",
+    "title": "dns::resolv",
+    "line": 4,
+    "resource": "fef24ed17ae3e08dcdbf1f91102683ffb0d4d4eb",
+    "environment": "production",
+    "certname": "puppet-dns.intelliment-labs.com",
+    "parameters": {
+      "action": "allow",
+      "ports": [
+        "53/udp"
+      ],
+      "source": [
+        "all-consumers"
+      ]
+    },
+    "exported": false
+  }
+]

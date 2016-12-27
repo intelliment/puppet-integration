@@ -1,0 +1,16 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# An example controller showing a sample home page
+GET     /                           controllers.HomeController.index
+
+# The puppet angular app
+GET     /puppet                     controllers.AngularController.index
+GET    	/scenarios	                controllers.AngularController.getScenarios
+GET     /requirements      			controllers.AngularController.requirements(id: String, url: String)
+POST    /apply		                controllers.AngularController.apply(id: String, url: String)
+POST    /remove		                controllers.AngularController.remove(id: String, url: String)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

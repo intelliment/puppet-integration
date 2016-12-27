@@ -1,0 +1,95 @@
+[
+  {
+    "certname": "puppet-database.intelliment-labs.com",
+    "resource": "14100573dbdbf6f7ec666e5e168190cd34cfabdf",
+    "parameters": {
+      "action": "allow",
+      "ports": ["3306/tcp"],
+      "source_class": "all-consumers"
+    },
+    "title": "app1::database",
+    "tags": [
+      "role",
+      "app1",
+      "puppet-database.intelliment-labs.com",
+      "class",
+      "app1::database",
+      "provides",
+      "profile",
+      "itlm",
+      "itlm::provides",
+      "database",
+      "profile::app1::database",
+      "role::app1::database",
+      "node"
+    ],
+    "environment": "production",
+    "exported": false,
+    "file": "/etc/puppetlabs/code/environments/production/modules/profile/manifests/app1/database.pp",
+    "line": 23,
+    "type": "Itlm::Provides"
+  },
+  {
+    "certname": "puppet-webserver.intelliment-labs.com",
+    "resource": "64f3ccbf8f5efe1b07abd42193e9299ae4ce2e6e",
+    "parameters": {
+      "action": "allow",
+      "environment": "all",
+      "dest_class": "role::app1::database",
+      "service": "app1::database"
+    },
+    "title": "app1::database",
+    "tags": [
+      "role",
+      "consumes",
+      "app1",
+      "class",
+      "app1::database",
+      "role::app1::webserver",
+      "profile",
+      "itlm",
+      "database",
+      "profile::app1::webserver",
+      "webserver",
+      "itlm::consumes",
+      "puppet-webserver.intelliment-labs.com",
+      "node"
+    ],
+    "environment": "production",
+    "exported": false,
+    "file": "/etc/puppetlabs/code/environments/production/modules/profile/manifests/app1/webserver.pp",
+    "line": 7,
+    "type": "Itlm::Consumes"
+  },
+  {
+    "certname": "puppet-webserver.intelliment-labs.com",
+    "resource": "8955a404b15a45cb11de2263ac1ce583ba40d329",
+    "parameters": {
+      "action": "allow",
+      "ports": ["80/tcp"],
+      "source_class": "all"
+    },
+    "title": "app1::web",
+    "tags": [
+      "role",
+      "web",
+      "app1",
+      "class",
+      "role::app1::webserver",
+      "provides",
+      "profile",
+      "app1::web",
+      "itlm",
+      "itlm::provides",
+      "profile::app1::webserver",
+      "webserver",
+      "puppet-webserver.intelliment-labs.com",
+      "node"
+    ],
+    "environment": "production",
+    "exported": false,
+    "file": "/etc/puppetlabs/code/environments/production/modules/profile/manifests/app1/webserver.pp",
+    "line": 11,
+    "type": "Itlm::Provides"
+  }
+]

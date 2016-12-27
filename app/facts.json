@@ -1,0 +1,32 @@
+[
+  {
+    "certname": "learning.puppetlabs.vm",
+    "environment": "production",
+    "name": "ipaddress",
+    "value": "192.168.1.19"
+  },
+  {
+    "certname": "puppet-webserver.intelliment-labs.com",
+    "environment": "production",
+    "name": "ipaddress",
+    "value": "10.0.42.42"
+  },
+  {
+    "certname": "puppet-database.intelliment-labs.com",
+    "environment": "production",
+    "name": "ipaddress",
+    "value": "10.0.23.23"
+  },
+  {
+    "certname": "puppet-webserver2.intelliment-labs.com",
+    "environment": "production",
+    "name": "ipaddress",
+    "value": "10.0.42.23"
+  },
+  {
+    "certname": "puppet-dns.intelliment-labs.com",
+    "environment": "production",
+    "name": "ipaddress",
+    "value": "10.1.42.42"
+  }
+]
