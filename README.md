@@ -9,7 +9,7 @@ Proof of Concept of Puppet integration with Intelliment Security Policy Automati
 This repository contains the following components:
 
 * A web application written in Scala + Play + Angular : TBD
-* Puppet module: TBD
+* Puppet module: itlm puppet module found [here][tree/master/puppet/modules/itlm]
 
 ## How it works
 
