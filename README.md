@@ -23,7 +23,7 @@ Proof of Concept of Puppet integration with Intelliment Security Policy Automati
 
 This repository contains the following components:
 
-* Puppet module: itlm puppet module found [here](tree/master/puppet/modules/itlm)
+* Puppet module: itlm puppet module found [here](https://github.com/intelliment/puppet-integration/tree/master/puppet/modules/itlm/manifests)
 * A web application written in Scala + Play + Angular : A single application that check resources in the PuppetDB and matches with a scenario in order to create requirements according to the _provides_ and _consumes_ stereotypes. This UI also shows inconsistences in case of new requirements violates existing requirements in the scenario.
 
 ## How it works
