@@ -53,7 +53,7 @@ object RequirementModel {
   
   case class Status(kind: String, message: Option[String])
   case class IssuedRequirement(id: Option[String], status: Status, source: Endpoint, destination: Endpoint, services: List[Service], tags: List[String], action: String)
-  case class ConfigurationEntry(enabled: Boolean, confType: Option[String], services: List[Service])
+  case class ConfigurationEntry(confType: Option[String], services: List[Service])
   case class RequirementApi(id: String, source: Endpoint, destination: Endpoint, configuration: List[ConfigurationEntry], tags: List[String], action: String)
   case class Requirement(id: Option[String], source: Endpoint, destination: Endpoint, services: List[Service], tags: List[String], action: String)
   
@@ -79,7 +79,6 @@ object RequirementModel {
     (JsPath \ "action").read[String])(Requirement.apply _)  
   
   implicit val configurationReads: Reads[ConfigurationEntry] = (
-      (JsPath \ "enabled").read[Boolean] and
       (JsPath \ "type").readNullable[String] and
       (JsPath \ "services").readNullable[List[JsObject]].map { 
       x => x.getOrElse(List.empty).map { s => Service.build(s) } })(ConfigurationEntry.apply _)
