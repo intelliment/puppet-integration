@@ -21,6 +21,9 @@ import play.api.Logger
 import play.api.libs.json.JsValue
 import play.api.libs.json.JsArray
 import play.api.libs.json.JsBoolean
+import play.api.libs.json.JsLookupResult
+import scala.concurrent.Await
+import scala.concurrent.duration.Duration
 
 /**
  * Client for Intelliment API calls
@@ -40,6 +43,8 @@ trait IntellimentApiClient {
   def createRequirement(scenarioId: String, source: Endpoint, destination: Endpoint, tags: List[String], services: List[Service]): Future[String]
   
   def removeRequirement(scenarioId: String, id: String): Future[String]
+  
+  def getServices(scenarioId: String): Future[Map[String, String]]
 }
 
 class WSIntellimentApiClient @Inject() (ws: WSClient, conf: Configuration)
@@ -51,16 +56,16 @@ class WSIntellimentApiClient @Inject() (ws: WSClient, conf: Configuration)
   // Constants
   val IntellimentServer = conf.underlying.getString("intelliment.server")
   val ApiToken = conf.underlying.getString("intelliment.token")
-  val ServiceBinding = Map("3306/tcp" -> "tcp_3306", "80/tcp" -> "tcp_80", "443/tcp" -> "tcp_443", "53/udp" -> "udp_53", "22/tcp" -> "tcp_22")
+  val BaseUri = s"$IntellimentServer/api/v1/policy-automation/scenarios"
   
   override def getScenarios: Future[List[JsObject]] = {
-    val url = s"$IntellimentServer/api/v1/policy-automation/scenarios?limit=100"
+    val url = s"$BaseUri?limit=100"
     val response: Future[WSResponse] = get(url)
     response map { scenarios => scenarios.json.\("data").as[List[JsObject]] }
   }
   
   override def getIssues(scenarioId: String): Future[Map[String, List[Issue]]] = {
-    val url = s"$IntellimentServer/api/v1/policy-automation/scenarios/$scenarioId/issues?limit=100"
+    val url = s"$BaseUri/$scenarioId/issues?limit=100"
     val response: Future[WSResponse] = get(url)
     val list = response map { issues => { issues.json.\("data").as[List[Issue]]} }
     
@@ -68,19 +73,19 @@ class WSIntellimentApiClient @Inject() (ws: WSClient, conf: Configuration)
   }
   
   override def getNetworks(scenarioId: String): Future[List[Network]] = {
-    val url = s"$IntellimentServer/api/v1/policy-automation/scenarios/$scenarioId/objects?types=zone,internet&limit=100"
+    val url = s"$BaseUri/$scenarioId/objects?types=zone,internet&limit=100"
     val response: Future[WSResponse] = get(url)
     response map { _.json.\("data").as[List[Network]] }
   }
   
   override def getNetworkByName(scenarioId: String, name: String): Future[Option[Network]] = {
-    val url = s"$IntellimentServer/api/v1/policy-automation/scenarios/$scenarioId/objects?types=zone,internet&limit=100"
+    val url = s"$BaseUri/$scenarioId/objects?types=zone,internet&limit=100"
     val response: Future[WSResponse] = get(s"$url&name=$name")
     response map { _.json.\("data").as[List[Network]] } map { _.headOption }
   }
   
   override def getRequirements(scenarioId: String, query: Option[String]): Future[List[Requirement]] = {
-    val reqUrl = s"$IntellimentServer/api/v1/policy-automation/scenarios/$scenarioId/requirements?expand=source,destination,services"
+    val reqUrl = s"$BaseUri/$scenarioId/requirements?expand=source,destination,services"
     val url = query match {
       case None => reqUrl
       case Some(q) => reqUrl + "&" + q
@@ -92,18 +97,21 @@ class WSIntellimentApiClient @Inject() (ws: WSClient, conf: Configuration)
   }
   
   override def removeRequirement(scenarioId: String, id: String): Future[String] = {
-    val url = s"$IntellimentServer/api/v1/policy-automation/scenarios/$scenarioId/requirements"
+    val url = s"$BaseUri/$scenarioId/requirements"
     val response: Future[WSResponse] = delete(url + "/" + id)
     response flatMap( x_ => Future { "success" })
   }
   
   override def createRequirement(scenarioId: String, source: Endpoint, destination: Endpoint, tags: List[String], services: List[Service]): Future[String] = {
-   
+    // FIXME: Changes this block to avoid await
+    val futureServiceBinding = getServiceMap(scenarioId)
+    val serviceBinding = Await.result(futureServiceBinding, Duration.Inf)
+    
     val servicesJson = for {
       service <- services
       port <- service.ports
     } yield JsObject(Seq(
-          "id" -> JsString(ServiceBinding(port))
+          "id" -> JsString(serviceBinding(port))
         ))
     
     val config: JsValue = JsArray(Seq(
@@ -130,7 +138,7 @@ class WSIntellimentApiClient @Inject() (ws: WSClient, conf: Configuration)
       "action" -> JsString("allow")
       ))
     
-    val reqUrl = s"$IntellimentServer/api/v1/policy-automation/scenarios/$scenarioId/requirements"
+    val reqUrl = s"$BaseUri/$scenarioId/requirements"
     request.flatMap {
       case Some(req) => {
         post(reqUrl, req) flatMap(response => response.status match {
@@ -144,30 +152,66 @@ class WSIntellimentApiClient @Inject() (ws: WSClient, conf: Configuration)
     
   }
   
-    private def endpointJson(scenarioId: String, endpoint: Endpoint): Future[Option[JsObject]] = endpoint match {
-      case Endpoint(None, _, Some(ip)) => 
-        Future { 
-          Some(JsObject(Seq("type" -> JsString("ip"), "value" -> JsString(ip)))) 
+  override def getServices(scenarioId: String): Future[Map[String, String]] = getServiceMap(scenarioId)
+  
+  private def endpointJson(scenarioId: String, endpoint: Endpoint): Future[Option[JsObject]] = endpoint match {
+    case Endpoint(None, _, Some(ip)) => 
+      Future { 
+        Some(JsObject(Seq("type" -> JsString("ip"), "value" -> JsString(ip)))) 
+      }
+    case Endpoint(None, name, None) => {
+      getIdByName(scenarioId, name) map {
+        case Some(n) => Some(JsObject(Seq("type" -> JsString("id"), "value" -> JsString(n))))
+        case None => None
         }
-      case Endpoint(None, name, None) => {
-        getIdByName(scenarioId, name) map {
-          case Some(n) => Some(JsObject(Seq("type" -> JsString("id"), "value" -> JsString(n))))
-          case None => None
-          }
-        }
+      }
+  }
+  
+  private def getIdByName(scenarioId: String, name: String): Future[Option[String]] = {
+    val url = s"$BaseUri/$scenarioId/objects?name="
+    val response: Future[WSResponse] = get(url + name)
+    
+    val objOpt = response map { _.json.\("data").as[List[JsObject]] } map { _.headOption }
+    objOpt flatMap { 
+      case Some(obj) => Future { obj.\("id").asOpt[String] }
+      case None => Future { None }
     }
     
-    private def getIdByName(scenarioId: String, name: String): Future[Option[String]] = {
-      val url = s"$IntellimentServer/api/v1/policy-automation/scenarios/$scenarioId/objects?name="
-      val response: Future[WSResponse] = get(url + name)
-      
-      val objOpt = response map { _.json.\("data").as[List[JsObject]] } map { _.headOption }
-      objOpt flatMap { 
-        case Some(obj) => Future { obj.\("id").asOpt[String] }
-        case None => Future { None }
-      }
-      
+  }
+  
+  private def getServiceMap(scenarioId: String): Future[Map[String, String]] = {
+    val url = s"$BaseUri/$scenarioId/objects?limit=100&types=tcp_service,udp_service,icmp_service,service"
+    
+    val pagination = new Pagination(ws, ApiToken)
+    val futureListPages = pagination.fetch(url)
+    
+    val x = for {
+      listPages <- futureListPages
+    } yield for {
+      page <- listPages
+    } yield toMap(page.data)
+    
+    x map { _.flatten.toMap }
+  }
+  
+  private def toMap(services: List[JsObject]): Map[String, String] = {
+    def name(srvType: String, param: JsLookupResult): String = {
+      val value = param.as[String]
+      if (value == null || value.equals("")) return srvType
+      value + "/" + srvType
     }
+    
+    def categorize(srv: JsObject): String = {
+      srv.\("type").as[String] match {
+        case "tcp_service" => name("tcp", srv.\("destinationPorts"))
+        case "udp_service" => name("udp", srv.\("destinationPorts"))
+        case "icmp_service" => name("icmp", srv.\("typeCode"))
+        case _ => name("ip", srv.\("protocol"))
+      }
+    }
+    
+    return Map(services map { s => (categorize(s), s.\("id").as[String])} : _*)
+  }
   
   private def update(url: String, request: JsObject, response: WSResponse): Future[String] = {
       val msg = response.json.\("message").as[String]

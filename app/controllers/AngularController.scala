@@ -25,10 +25,13 @@ import services.IntellimentApiClient
  */
 @Singleton
 class AngularController @Inject() (puppetResource: PuppetResource, 
-    requirementService: RequirementService, api: IntellimentApiClient, actorSystem: ActorSystem) 
+    requirementService: RequirementService, api: IntellimentApiClient,
+    conf: Configuration, actorSystem: ActorSystem) 
     (implicit exec: ExecutionContext) 
     extends Controller {
-   
+  
+  val PuppetDbUrl = conf.underlying.getString("intelliment.puppetDbUrl")
+  
   implicit val requirementResponseFormat = new Writes[RequirementResponse] {
     def writes(reqs: RequirementResponse) = Json.obj(
       "existingRequirements" -> reqs._1,
@@ -51,11 +54,23 @@ class AngularController @Inject() (puppetResource: PuppetResource,
   }
   
   /**
+   * Return the PuppetDB - url
+   */
+  def getPuppetUrl = Action {
+    Ok(PuppetDbUrl)
+  }
+  
+  /**
    * Return the existing and new requirements
    */
   def requirements(id: String, url: String) = Action.async {
     val requirements = generateReqs(id, url)
     requirements map { resp => Ok(Json.toJson(resp)) }
+  }
+  
+  def getServices(id: String) = Action.async {
+    val services = api.getServices(id)
+    services map { service => Ok(Json.toJson(service)) }
   }
   
   /**

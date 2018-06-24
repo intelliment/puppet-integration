@@ -7,7 +7,7 @@ puppetModuleApp.controller('RequirementController', function ($scope, $http) {
   $scope.existingRequirements = [];
   $scope.newRequirements = [];
   
-  $scope.puppetDbUrl = "http://192.168.1.19:8080/pdb";
+  $scope.puppetDbUrl = "";
   $scope.message = "";
   $scope.loading = false;
   $scope.applying = false;
@@ -19,7 +19,15 @@ puppetModuleApp.controller('RequirementController', function ($scope, $http) {
   $scope.scenario = "";
   
   // Initializes the structures
-  $scope.init = function () {
+  $scope.init = function () { 
+	  $http({
+          method: 'GET',
+          url: '/puppet-url'
+      }).success(function(data){
+    	  $scope.puppetDbUrl = data;
+      }).error(function(){
+          alert("Error getting scenarios");
+      });
 	  $http({
           method: 'GET',
           url: '/scenarios'

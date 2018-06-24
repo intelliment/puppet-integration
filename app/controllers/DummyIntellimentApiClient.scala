@@ -50,4 +50,6 @@ class DummyIntellimentApiClient (implicit exec: ExecutionContext) extends Intell
     Future { x }
   }
   
+  def getServices(scenarioId: String): Future[Map[String, String]] = ???
+  
 }

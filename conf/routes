@@ -5,6 +5,8 @@
 # The puppet angular app
 GET     /puppet                     controllers.AngularController.index
 GET    	/scenarios	                controllers.AngularController.getScenarios
+GET    	/services	                controllers.AngularController.getServices(id: String)
+GET    	/puppet-url	                controllers.AngularController.getPuppetUrl
 GET     /requirements      			controllers.AngularController.requirements(id: String, url: String)
 POST    /apply		                controllers.AngularController.apply(id: String, url: String)
 POST    /remove		                controllers.AngularController.remove(id: String, url: String)
